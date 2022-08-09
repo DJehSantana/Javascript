@@ -7,7 +7,9 @@ const leitor = readline.createInterface({
     output: process.stdout
 });
 
+//criando array de objetos da classe Produto
 const produtosMercado = [
+    //instanciando objetos
     new Produto ("arroz", 18.50),
     new Produto ("feijao", 7),
     new Produto ("melancia", 5),
@@ -41,4 +43,66 @@ const validarLista = (listaMercado) => {
     return itensDesejados;
 
 }
+
+
+// função criar lista de produtos disponíveis e de produtos indisponíveis
+const verificarDisponibilidade = (listaValida) => {
+
+    const produtosDisponiveis = [];
+    const produtosIndisponiveis = [];
+
+    for (const item of listaValida) {
+        const itemFormatado = item.trim().toLowerCase();
+
+        //find - percorre o array comparando a propriedade nome dos objetos,
+        // com o nome do produto digitado pelo usuário
+        const produto = produtosMercado.find (
+            produtoMercado => produtoMercado.nome === itemFormatado
+        );
+
+        if (produto) {
+            produtosDisponiveis.push(produto);
+        } else{
+            produtosIndisponiveis.push(itemFormatado);
+        }
+    }
+
+    //retornando valor dos arrays como objeto
+    return {
+        produtosDisponiveis,
+        produtosIndisponiveis
+    }
+
+}
+
+//Recebendo lista de produtos do usuário
+leitor.question('Digite a lista de produtos separados por vírgula: \n',
+    listaProdutos => {
+        //tratamento de exceção
+        try{
+            //recebe lista de produtos validada
+            const listaValida = validarLista(listaProdutos);
+
+            const disponibilidade = verificarDisponibilidade(listaValida);
+            //exibindo lista de produtos disponíveis e indisponíveis
+            console.log (
+                'Produtos disponíveis: ', disponibilidade.produtosDisponiveis
+            );
+            console.log (
+                'Produtos indisponíveis', disponibilidade.produtosIndisponiveis
+            );
+
+            const produtosOrdenados = produtosMercado.sort((produto1, produto2) => 
+                produto1.nome.localeCompare(produto2.nome));
+
+            console.log('Produtos em estoque:', produtosOrdenados);
+
+        } catch (e){
+            console.log(`Erro ao validar a lista: ${e.message}`);
+        } finally{
+            leitor.close();
+        }
+
+    }
+);
 
