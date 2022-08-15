@@ -1,3 +1,6 @@
+//importar o Enum
+const TipoPagamento = require('./TipoPagamento');
+
 //receber a forma de pagamento e o valor
 const forma_pagamento = process.argv[2];
 const valor = process.argv[3];
