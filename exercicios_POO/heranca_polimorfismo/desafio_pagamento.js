@@ -1,3 +1,7 @@
+//importando classes
+const Boleto = require('./Boleto');
+const Pix = require('./Pix');
+
 //importar o Enum
 const TipoPagamento = require('./TipoPagamento');
 
@@ -12,10 +16,19 @@ if(!forma_pagamento || !valor) {
 }
 
 //identificar a forma de pagamento
-if (forma_pagamento.toLowerCase() !== TipoPagamento.BOLETO.toLowerCase() &&
-forma_pagamento.toLowerCase() !== TipoPagamento.PIX.toLowerCase()){
+let objetoPagamento;
+const eBoleto = forma_pagamento.toLowerCase() === TipoPagamento.BOLETO.toLowerCase();
+const ePix = forma_pagamento.toLowerCase() === TipoPagamento.PIX.toLowerCase();
+
+if (eBoleto) {
+    objetoPagamento = new Boleto();
+} else if (ePix) {
+    objetoPagamento = new Pix();
+} else {
     console.log('Forma de pagamento inválida!');
     return;
 }
+
 //efetuar o pagamento
+objetoPagamento.efetuarPagamento(valor);
 
