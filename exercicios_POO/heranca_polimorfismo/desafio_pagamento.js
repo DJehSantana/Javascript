@@ -8,13 +8,14 @@ const valor = process.argv[3];
 //validar os parametros de entrada
 if(!forma_pagamento || !valor) {
     console.log('Forma de pagamento ou valor inválidos!');
-    return
+    return;
 }
 
 //identificar a forma de pagamento
 if (forma_pagamento.toLowerCase() !== TipoPagamento.BOLETO.toLowerCase() &&
 forma_pagamento.toLowerCase() !== TipoPagamento.PIX.toLowerCase()){
     console.log('Forma de pagamento inválida!');
+    return;
 }
 //efetuar o pagamento
 
