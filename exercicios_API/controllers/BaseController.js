@@ -8,8 +8,13 @@ class BaseController{
         }
         //atribuindo a instanca do express a um elemento da classe
         this.express = expressInstance;
-        this.setupRoutes();
+        this.setupRoutes('/api');
 
+    }
+
+    setupRoutes() {
+        //vai dar erro caso o controller não passe uma rota
+        throw new Error ('setupRoutes deve ser implementado');
     }
 
 
