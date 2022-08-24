@@ -12,6 +12,7 @@ class BaseController{
 
     }
 
+    //definindo metodo abstrato para ser implementado nas classes filhas
     setupRoutes() {
         //vai dar erro caso o controller não passe uma rota
         throw new Error ('setupRoutes deve ser implementado');
@@ -19,3 +20,5 @@ class BaseController{
 
 
 }
+
+module.exports = BaseController;

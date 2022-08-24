@@ -1,9 +1,9 @@
-//configurar o express
+
 const App = require('./src/App');
 
 //instanciar aplicação
-
 const api = new App();
+//chamar o metodo start
 api.start();
 
 
