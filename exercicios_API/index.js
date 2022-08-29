@@ -1,4 +1,4 @@
-
+// importando classe App
 const App = require('./src/App');
 
 //instanciar aplicação

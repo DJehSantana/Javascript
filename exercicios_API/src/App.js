@@ -4,6 +4,7 @@ const express = require('express');
 const UserController = require('./controllers/UserController');
 
 class App {
+    //método start chama todos os métodos da classe App
     start() {
         this.setupExpress();
         //método que vai carregar todos os controllers da aplicação
@@ -27,6 +28,7 @@ class App {
     //carrega toda a lista de controllers que a aplicação terá
     loadControllers() {
         this.controllers = [
+            //passando a instancia do express por parâmetro
             new UserController(this.express)
         ]
     }
